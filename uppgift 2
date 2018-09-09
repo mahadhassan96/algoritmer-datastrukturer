@@ -1,0 +1,54 @@
+import java.util.*;
+import java.io.*;
+
+//Måste få gjort: skapa en ADT t ex array, bag, queue, stack
+//Använd Standard input för att stoppa in värden
+
+public class reciter
+{
+	public static void iter(char vec[], int num)
+		{
+			int i = num - 1;
+			while(i >= 0)
+				{
+					System.out.println(vec[i]);
+					i--;
+				}
+		}
+
+	public static void rec(char vec[], int i)
+		{
+
+			if(i > 0)
+				{
+					i--;
+					System.out.println(vec[i]);
+					iter(vec, i);
+				}
+		}
+
+	public static void main(String[] args)
+		{
+			int num;
+			java.util.Scanner in = new java.util.Scanner(System.in);
+			System.out.println("Enter number of elements: ");
+			num = in.nextInt();
+			char[] vec = new char[num];
+
+			System.out.println("Enter characters");
+			/*for(int i = 0; i < num; i++)
+				{
+					vec[i] = in.next().charAt(0);
+				}
+			*/
+
+			while(vec.hasNextChar())
+				{
+					vec[i].readChar();
+				}
+
+			System.out.println();
+			rec(vec, num);
+		}
+
+}
