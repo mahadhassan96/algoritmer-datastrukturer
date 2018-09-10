@@ -77,3 +77,16 @@ public class Lifostack
 				Lifostack vec = new Lifostack(v);
 			}
 	}
+	
+	// testa i main
+	
+	char[] v = {'a', 'b', 'c'};
+	Lifostack vec = new Lifostack(v);
+	String s = vec.toString();
+	System.out.println(s);
+	char c = 'd';
+	vec.push(c);
+	String x = vec.toString();
+	System.out.println(x);
+	char g = vec.pop();
+	System.out.println(g);
