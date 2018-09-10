@@ -1,0 +1,78 @@
+import java.util.Iterator;
+
+public class Lifostack
+	{
+		 private char[] a = null;  // stack items
+		 private int N = 0;
+
+		 public Lifostack(char[] vec)
+		 	{
+				this.a = new char[vec.length];
+				this.N = vec.length;
+				for(int i = 0; i < vec.length; i++)
+					{
+						this.a[i] = vec[i];
+					}
+			}
+
+		 public boolean isEmpty()
+		 	{
+				return N == 0;
+			}
+
+		public int size()
+			{
+				return N;
+			}
+
+		public String toString()
+			{
+				String s = "{";
+				if(isEmpty())
+					s = s + "}";
+				else
+					{
+						for(int i = 0; i < a.length - 1; i++)
+							{
+								s = s + a[i] + ", ";
+							}
+						s = s + a[a.length - 1] + "}";
+					}
+				return s;
+			}
+
+		private void resize(int max)
+			{  // Move stack to a new array of size max.
+				char[] temp = new char[max];
+
+				for (int i = 0; i < N; i++)
+					temp[i] = a[i];
+					a = temp;
+			}
+
+		public void push(char c)
+			{
+				// Add item to top of stack.
+				if (N == a.length)
+					resize(2*a.length);
+				a[N++] = c;
+			}
+
+		 public int pop()
+		 	{
+				// Remove item from top of stack.
+				char item = a[--N];
+			//	a[N] = null;  // Avoid loitering (see text).
+
+				if (N > 0 && N == a.length/4)
+					resize(a.length/2);
+
+				return item;
+			}
+
+		public static void main(String[] args)
+			{
+				char[] v = {'a', 'b', 'c', 'd'};
+				Lifostack vec = new Lifostack(v);
+			}
+	}
