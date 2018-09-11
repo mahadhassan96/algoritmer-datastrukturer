@@ -1,0 +1,120 @@
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
+public class DoublyNode <DT>
+	{
+
+		private int N;		//size of LL
+		private Node first = null;
+		private Node last = null;
+
+		private class Node
+			{
+				 DT value;
+				 Node next;
+				 Node prev;
+
+				public Node(DT c, Node next, Node prev)
+					{
+						this.value = value;
+						this.next = next;
+						this.prev = prev;
+					}
+			}
+
+		public boolean isEmpty()
+			{
+				return N == 0;
+			}
+
+		public int size()
+			{
+				return N;
+			}
+
+		public String toString()
+			{
+				StringBuilder str = new StringBuilder("[");
+				Node ny = first;
+				while(ny != null)
+					{
+						str.append(ny.value);
+						if(ny.next != null)
+							{
+								str.append(", ");
+							}
+						ny = ny.next;
+					}
+				str.append("]");
+
+				return str.toString();
+			}
+
+		public void addfirst(DT c)	//adds new char to first place
+			{
+				Node nyfirst = new Node(c, first, null);	//construct new node with given value
+				if(first != null)		//first has a value?
+					{
+						first.prev = nyfirst;		//.prev = before first
+					}
+
+				first = nyfirst;
+				if(last == null)	//last is empty
+					{
+						last = nyfirst;		//last = nyfirst?
+					}
+				N++;		//increase size
+			}
+
+		public void enqueue(DT c) //add new char to last place
+			{
+				if(isEmpty())
+					{
+						addfirst(c);
+					}
+				else
+					{
+						Node oldlast = last;
+						last = new Node(c, null, last);
+						if(isEmpty())
+							{
+								first = last;
+							}
+						else
+							{
+								oldlast.next = last;
+							}
+						N++;
+					}
+			}
+
+		public void forward()
+			{
+				Node nynode = first;
+				while(nynode != null)
+					{
+						nynode = nynode.next;
+					}
+			}
+
+		public void backwards()
+			{
+				Node nynode = last;
+				while(nynode != null)
+					{
+						nynode = nynode.prev;
+					}
+			}
+
+		public DT dequeue()	//remove first
+			{
+				DT c = first.value;
+				first = first.next;
+				if(isEmpty())
+					{
+						last = null;
+					}
+				N--;
+				return c;
+			}
+	}
