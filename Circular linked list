@@ -1,0 +1,92 @@
+/*
+	Circular Linked List
+
+	By Mahad Hassan TIEDB
+
+	This circuar linked list uses a single linked list structure to parse forward from first node
+	to last node - and then back to the front. It inserts new values from the front and deletes values from the back.
+*/
+public class circular <DT>
+{
+	private int N = 0;
+	private Node first = null;
+	private Node last = null;
+
+	private class Node
+		{
+			DT value;
+			Node next;
+
+			public Node()
+				{
+					this.value = value;
+					this.next = next;
+				}
+		}
+
+			public String toString()
+				{
+					last.next = null;							//annars går den runt i oändlighet
+					StringBuilder str = new StringBuilder("[");
+					Node nod = first;
+					while(nod != null)
+						{
+							str.append(nod.value);
+							if(nod.next != null)
+								{
+									str.append(", ");
+								}
+							nod = nod.next;
+						}
+					str.append("]");
+
+					return str.toString();
+				}
+
+			public boolean isEmpty()
+				{
+					return N == 0;
+				}
+
+			public int size()
+				{
+					return N;
+				}
+
+			public void insertf(DT val)	//insert from the front
+				{
+					Node nod = new Node();
+					nod.value = val;
+					if(isEmpty())
+						{
+							first = nod;
+							last = nod;
+							first.next = last;
+							last.next = first;
+						}
+					else
+						{
+							Node oldfirst = first;
+							nod.next = oldfirst;
+							first = nod;
+
+							last.next = first;
+						}
+					N++;
+				}
+
+			public void removeb()		//remove from the back
+				{
+					if(isEmpty())
+						{
+							System.out.println("Nothing here!");
+						}
+					Node nod = first;
+					while(nod.next != last)
+						{
+							nod = nod.next;
+						}
+					last = nod;
+					N--;
+				}
+}
